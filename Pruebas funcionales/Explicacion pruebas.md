@@ -13,8 +13,7 @@ La interfaz bloquea el botón **Guardar** hasta que el usuario ingrese un nombre
 
 **Evidencia**
 
-![Validación Iglesia](../imagenes evidencia/Evidencia cambios 1.png)
-
+imagenes evidencia/Evidencia cambios 1.png
 ---
 
 # Prueba 2 — Registro correcto de Iglesia
@@ -27,8 +26,7 @@ Esta prueba confirma que la lógica del controlador y las validaciones funcionan
 
 **Evidencia**
 
-![Registro Iglesia](../imagenes evidencia/Evidencia cambios 2.png)
-
+imagenes evidencia/Evidencia cambios 2.png
 ---
 
 # Prueba 3 — Funcionamiento del módulo de Pagos
@@ -42,8 +40,7 @@ Esto confirma que el módulo funciona correctamente después de los cambios impl
 
 **Evidencia**
 
-![Modulo Pagos](../imagenes evidencia/Evidencia cambios 3.png)
-
+imagenes evidencia/Evidencia cambios 3.pngs
 ---
 
 # Prueba 4 — Implementación de PaymentService
@@ -56,8 +53,7 @@ Este cambio permite separar la lógica de negocio del controlador, mejorando la 
 
 **Evidencia**
 
-![PaymentService](../imagenes evidencia/Evidencia cambios 4.png)
-
+imagenes evidencia/Evidencia cambios 4.png
 ---
 
 # Prueba 5 — Uso de DTO en respuestas de pagos
@@ -70,8 +66,7 @@ Esto mejora la seguridad, la claridad de la API y la arquitectura general del si
 
 **Evidencia**
 
-![PaymentResponseDto](../imagenes evidencia/Evidencia cambios 5.png)
-
+imagenes evidencia/Evidencia cambios 5.png
 ---
 
 # Conclusión
