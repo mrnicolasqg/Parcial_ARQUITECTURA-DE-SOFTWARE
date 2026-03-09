@@ -13,8 +13,7 @@ La interfaz bloquea el botón **Guardar** hasta que el usuario ingrese un nombre
 
 **Evidencia**
 
-imagenes evidencia/Evidencia cambios 1.png
----
+![Validación Iglesia](../imagenes evidencia/Evidencia cambios 1.png)---
 
 # Prueba 2 — Registro correcto de Iglesia
 
