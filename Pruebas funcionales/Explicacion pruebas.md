@@ -13,8 +13,11 @@ La interfaz bloquea el botón **Guardar** hasta que el usuario ingrese un nombre
 
 **Evidencia**
 
-![Validación Iglesia](../imagenes evidencia/Evidencia cambios 1.png)---
-
+```java
+public record ChurchRequest(
+    @NotBlank(message = "El nombre es obligatorio") String name,
+    String address
+) {}
 # Prueba 2 — Registro correcto de Iglesia
 
 Se comprobó que el sistema permite registrar una iglesia correctamente cuando se ingresan los datos requeridos.
@@ -25,8 +28,20 @@ Esta prueba confirma que la lógica del controlador y las validaciones funcionan
 
 **Evidencia**
 
-imagenes evidencia/Evidencia cambios 2.png
----
+@PreAuthorize("hasRole('ADMIN')")
+@PostMapping
+public ChurchResponse create(@Valid @RequestBody ChurchRequest request) {
+    if (churchRepository.count() > 0) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ya existe una iglesia registrada");
+    }
+
+    Church church = new Church();
+    church.setName(request.name());
+    church.setAddress(request.address());
+    churchRepository.save(church);
+
+    return ChurchResponse.from(church);
+}---
 
 # Prueba 3 — Funcionamiento del módulo de Pagos
 
@@ -39,8 +54,14 @@ Esto confirma que el módulo funciona correctamente después de los cambios impl
 
 **Evidencia**
 
-imagenes evidencia/Evidencia cambios 3.pngs
----
+public record PaymentResponseDto(
+    Long id,
+    String type,
+    String status,
+    String amount,
+    int attempts,
+    Long referenceId
+) {}---
 
 # Prueba 4 — Implementación de PaymentService
 
@@ -52,8 +73,21 @@ Este cambio permite separar la lógica de negocio del controlador, mejorando la 
 
 **Evidencia**
 
-imagenes evidencia/Evidencia cambios 4.png
----
+@Service
+public class PaymentService {
+
+    private final PaymentRepository paymentRepository;
+    private final EnrollmentRepository enrollmentRepository;
+    private final OfferingRepository offeringRepository;
+
+    public PaymentService(PaymentRepository paymentRepository,
+                          EnrollmentRepository enrollmentRepository,
+                          OfferingRepository offeringRepository) {
+        this.paymentRepository = paymentRepository;
+        this.enrollmentRepository = enrollmentRepository;
+        this.offeringRepository = offeringRepository;
+    }
+}---
 
 # Prueba 5 — Uso de DTO en respuestas de pagos
 
@@ -65,8 +99,14 @@ Esto mejora la seguridad, la claridad de la API y la arquitectura general del si
 
 **Evidencia**
 
-imagenes evidencia/Evidencia cambios 5.png
----
+public class PaymentController {
+
+    private final PaymentService paymentService;
+
+    public PaymentController(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
+}---
 
 # Conclusión
 
